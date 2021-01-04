@@ -19,7 +19,7 @@ public class TasksTest {
     }
 
     @Test
-    public void deveriaSalvarTarefaComSucesso() {
+    public void shouldReturnTasksSuccessfully() {
 
         //Acessando o domínio
         WebDriver webDriver = acessarAplicacao();
@@ -51,7 +51,7 @@ public class TasksTest {
     }
 
     @Test
-    public void naoDeveriaSalvarTarefaSemDescricao() {
+    public void shouldntAddTasksWithoutTasks() {
         WebDriver webDriver = acessarAplicacao();
 
         try {
@@ -70,7 +70,7 @@ public class TasksTest {
     }
 
     @Test
-    public void naoDeveriaSalvarTarefaSemData() {
+    public void shouldNotAddWithDueDateNull() {
         WebDriver webDriver = acessarAplicacao();
 
         try {
@@ -89,7 +89,7 @@ public class TasksTest {
     }
 
     @Test
-    public void naoDeveriaSalvarTarefaComDataPassada() {
+    public void shouldNotReturnTasksWithAnInvalidDate() {
         WebDriver webDriver = acessarAplicacao();
 
         try {
@@ -109,7 +109,7 @@ public class TasksTest {
     }
 
     @Test
-    public void naoDeveriaSalvarTarefaSemDescricaoEData() {
+    public void shouldNotAddWithTasksAndDateNull() {
         WebDriver webDriver = acessarAplicacao();
 
         try {
