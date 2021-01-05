@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 public class TasksTest {
 
-    public WebDriver acessarAplicacao(){
+    public WebDriver startApplication(){
         WebDriver webDriver = new ChromeDriver();
         webDriver.navigate().to("http://localhost:8001/tasks");
         webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -22,7 +22,7 @@ public class TasksTest {
     public void shouldReturnTasksSuccessfully() {
 
         //Acessando o domínio
-        WebDriver webDriver = acessarAplicacao();
+        WebDriver webDriver = startApplication();
 
         try {
             //Clicar em Add Todo
@@ -52,7 +52,7 @@ public class TasksTest {
 
     @Test
     public void shouldntAddTasksWithoutTasks() {
-        WebDriver webDriver = acessarAplicacao();
+        WebDriver webDriver = startApplication();
 
         try {
             webDriver.findElement(By.id("addTodo")).click();
@@ -71,7 +71,7 @@ public class TasksTest {
 
     @Test
     public void shouldNotAddWithDueDateNull() {
-        WebDriver webDriver = acessarAplicacao();
+        WebDriver webDriver = startApplication();
 
         try {
             webDriver.findElement(By.id("addTodo")).click();
@@ -90,7 +90,7 @@ public class TasksTest {
 
     @Test
     public void shouldNotReturnTasksWithAnInvalidDate() {
-        WebDriver webDriver = acessarAplicacao();
+        WebDriver webDriver = startApplication();
 
         try {
             webDriver.findElement(By.id("addTodo")).click();
@@ -110,7 +110,7 @@ public class TasksTest {
 
     @Test
     public void shouldNotAddWithTasksAndDateNull() {
-        WebDriver webDriver = acessarAplicacao();
+        WebDriver webDriver = startApplication();
 
         try {
             webDriver.findElement(By.id("addTodo")).click();
