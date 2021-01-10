@@ -5,21 +5,27 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class TasksTest {
 
-    public WebDriver startApplication(){
-        WebDriver webDriver = new ChromeDriver();
-        webDriver.navigate().to("http://localhost:8001/tasks");
+    public WebDriver startApplication() throws MalformedURLException {
+        //WebDriver webDriver = new ChromeDriver();
+        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+        WebDriver webDriver = new RemoteWebDriver(new URL("http://192.168.0.111:4444/wd/hub"), capabilities);
+        webDriver.navigate().to("http://192.168.0.111:8001/tasks");
         webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         return webDriver;
     }
 
     @Test
-    public void shouldReturnTasksSuccessfully() {
+    public void shouldReturnTasksSuccessfully() throws MalformedURLException {
 
         //Acessando o domínio
         WebDriver webDriver = startApplication();
@@ -51,7 +57,7 @@ public class TasksTest {
     }
 
     @Test
-    public void shouldntAddTasksWithoutTasks() {
+    public void shouldntAddTasksWithoutTasks() throws MalformedURLException {
         WebDriver webDriver = startApplication();
 
         try {
@@ -70,7 +76,7 @@ public class TasksTest {
     }
 
     @Test
-    public void shouldNotAddWithDueDateNull() {
+    public void shouldNotAddWithDueDateNull() throws MalformedURLException {
         WebDriver webDriver = startApplication();
 
         try {
@@ -89,7 +95,7 @@ public class TasksTest {
     }
 
     @Test
-    public void shouldNotReturnTasksWithAnInvalidDate() {
+    public void shouldNotReturnTasksWithAnInvalidDate() throws MalformedURLException {
         WebDriver webDriver = startApplication();
 
         try {
@@ -109,7 +115,7 @@ public class TasksTest {
     }
 
     @Test
-    public void shouldNotAddWithTasksAndDateNull() {
+    public void shouldNotAddWithTasksAndDateNull() throws MalformedURLException {
         WebDriver webDriver = startApplication();
 
         try {
